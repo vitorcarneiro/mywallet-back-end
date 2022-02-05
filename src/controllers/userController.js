@@ -1,4 +1,4 @@
-import db from "../db.js";
+import db from "../dataBase.js";
 
 export async function getUser(req, res) {
   const { user } = req.locals;

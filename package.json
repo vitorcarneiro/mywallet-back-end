@@ -1,11 +1,12 @@
 {
   "name": "projeto_13_mywallet_back",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon src/app.js"
+    "start": "npx nodemon src/server.js"
   },
   "repository": {
     "type": "git",

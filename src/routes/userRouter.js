@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getUser, updateUser, deleteUser } from '../controllers/userController.js';
 import { tokenValidationMiddleware } from '../middlewares/tokenValidationMiddleware.js';
-import userSchemaValidationMiddleware from '../middlewares/userSchemaValidationMiddleware.js';
+import userSchemaValidationMiddleware from '../middlewares/userValidationMw.js';
 
 const userRouter = Router();
 userRouter.use(tokenValidationMiddleware);
