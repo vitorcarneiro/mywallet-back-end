@@ -1,11 +1,11 @@
 import express from 'express';
 import router from './routes/index.js';
 
-const app = express();
-app.use(express.json());
+const server = express();
+server.use(express.json());
 
-app.use(router);
+server.use(router);
 
-app.listen(5000, () => {
-  console.log('Server is listening on port 5000.');
+server.listen(5000, () => {
+  console.log('Server started on port http://localhost:5000/');
 });

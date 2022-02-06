@@ -1,16 +1,25 @@
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 import db from '../dataBase.js';
-import userSchema from '../schemas/userSchema.js';
 
+/* done */
 export async function signUp(req, res) {
   const user = req.body;
 
-  const passwordHash = bcrypt.hashSync(user.password, 10);
+  try {
+    const passwordHash = bcrypt.hashSync(user.password, 10);
+    const userExist = db.collection('users').findOne({...user.email});
 
-  await db.collection('users').insertOne({ ...user, password: passwordHash })
-
-  res.sendStatus(201);
+    if (userExist) 
+      res.status(409).send("E-mail already in use");
+    
+    await db.collection('users').insertOne({ ...user, password: passwordHash })
+  
+    res.sendStatus(201);
+    
+  } catch (error) {
+    res.sendStatus(500);
+  }
 }
 
 export async function signIn(req, res) {
@@ -24,6 +33,7 @@ export async function signIn(req, res) {
     await db.collection('sessions').insertOne({ token, userId: user._id });
 
     res.send(token);
+
   } else {
     res.sendStatus(401);
   }
