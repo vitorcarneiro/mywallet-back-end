@@ -1,11 +1,16 @@
 import db from "../dataBase.js";
 
-export async function getUser(req, res) {
-  const { user } = req.locals;
-
-  delete user.password;
-
-  res.send(user);
+/* done */
+export async function getCashflow(req, res) {
+  const { user } = res.locals;
+  try {
+    const userCashflow = await db.collection("cashflows").find({ userId: user._id }).toArray()
+  
+    res.send(userCashflow);
+    
+  } catch (error) {
+    res.sendStatus(500)
+  }
 }
 
 export async function updateUser(req, res) {
