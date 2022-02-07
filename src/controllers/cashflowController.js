@@ -16,7 +16,7 @@ export async function getCashflow(req, res) {
 /* done */
 export async function addMovement(req, res) {
   const { type } = req.params;
-  const movement = type === 'cash-in' ? req.body.movement : - (req.body.movement);
+  const movement = type === 'cash-out' ? - (req.body.movement) : req.body.movement;
   const { user } = res.locals;
 
   try {

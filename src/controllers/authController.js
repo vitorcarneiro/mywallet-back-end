@@ -8,10 +8,14 @@ export async function signUp(req, res) {
 
   try {
     const passwordHash = bcrypt.hashSync(user.password, 10);
-    const userExist = db.collection('users').findOne({...user.email});
+    const userExist = await db.collection('users').findOne({email: user.email});
+    console.log(user.email);
+    console.log(userExist);
 
-    if (userExist) 
+    if (userExist) {
       res.status(409).send("E-mail already in use");
+      return;
+    }
     
     await db.collection('users').insertOne({ ...user, password: passwordHash })
   
