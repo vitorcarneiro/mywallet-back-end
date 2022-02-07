@@ -9,8 +9,6 @@ export async function signUp(req, res) {
   try {
     const passwordHash = bcrypt.hashSync(user.password, 10);
     const userExist = await db.collection('users').findOne({email: user.email});
-    console.log(user.email);
-    console.log(userExist);
 
     if (userExist) {
       res.status(409).send("E-mail already in use");
