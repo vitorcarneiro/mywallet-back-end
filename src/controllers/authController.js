@@ -28,18 +28,19 @@ export async function signUp(req, res) {
 export async function signIn(req, res) {
   const { email, password } = req.body;
   const user = await db.collection('users').findOne({ email });
-  const name = user.name;
-
+  
   try {
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = uuid();
-  
+      const name = user.name;
+      
       await db.collection('sessions').insertOne({ token, userId: user._id });
   
       res.status(200).send({name, email, token});
   
     } else {
       res.sendStatus(401);
+      return;
     }
     
   } catch (error) {
