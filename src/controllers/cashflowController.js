@@ -1,6 +1,5 @@
 import db from "../dataBase.js";
 
-/* done */
 export async function getCashflow(req, res) {
   const { user } = res.locals;
   try {
@@ -13,18 +12,17 @@ export async function getCashflow(req, res) {
   }
 }
 
-/* done */
 export async function addMovement(req, res) {
   const { type } = req.params;
   const movement = type === 'cash-out' ? - (req.body.movement) : req.body.movement;
+  const description = req.body.description;
   const { user } = res.locals;
 
   try {
-    await db.collection(user.email).insertOne({movement, date: Date.now(), userId: user._id});
+    await db.collection(user.email).insertOne({ date: Date.now(), description, movement, userId: user._id });
     res.sendStatus(200);
     
   } catch (error) {
     res.sendStatus(500)
-
   }
 }
