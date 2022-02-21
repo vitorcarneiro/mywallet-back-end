@@ -16,7 +16,7 @@ This app was built and designed by [Vitor Carneiro](https://github.com/vitorcarn
 
 ## About
 
-This repository contains the back-end code. You can find the front-end code [here](https://github.com/vitorcarneiro/ecommerce-vgd-frontend).
+This repository contains the back-end code. You can find the front-end code [here](https://github.com/vitorcarneiro/mywallet-front-end).
 
 ### Implemented features
 
